@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { afterNavigate, beforeNavigate, goto } from '$app/navigation';
+	import { navigating } from '$app/stores';
 	import { Button } from '$components';
 
 	beforeNavigate((navigation) => {
@@ -16,6 +17,8 @@
 	afterNavigate((navigation) => {
 		console.log('after navigate', navigation);
 	});
+
+	$: console.log($navigating);
 </script>
 
 <h1>Welcome to SvelteKit</h1>
