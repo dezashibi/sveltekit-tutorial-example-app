@@ -2,13 +2,15 @@
 	import { page } from '$app/stores';
 </script>
 
-<h1>Admin</h1>
+<div style:background="#79c8d1" style:padding="10px">
+	<h3>Admin</h3>
 
-<nav>
-	<a href="/">Home</a>
-	{#if !$page.url.pathname.startsWith('/settings')}
-		<a href="/settings">Settings</a>
-	{/if}
-</nav>
+	<nav>
+		<a href="/">Home</a>
+		{#if !$page.url.pathname.startsWith('/settings')}
+			<a href="/settings">Settings</a>
+		{/if}
+	</nav>
 
-<slot />
+	<slot />
+</div>
