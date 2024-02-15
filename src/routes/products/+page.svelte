@@ -3,11 +3,10 @@
 
 	export let data: PageData;
 
-	$: products = data.productPage.products;
-	$: title = data.title;
+	$: products = data.productsPage.products;
 </script>
 
-<h2>{title}</h2>
+<h2>{data.title}</h2>
 
 {#if products && products.length > 0}
 	<ul>
