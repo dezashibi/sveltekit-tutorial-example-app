@@ -22,7 +22,8 @@ declare global {
                 total?: number,
                 skip?: number,
                 limit?: number,
-            }
+            },
+            title?: string
         }
         // interface PageState {}
         // interface Platform {}

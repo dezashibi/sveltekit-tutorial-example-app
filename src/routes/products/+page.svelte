@@ -4,9 +4,10 @@
 	export let data: PageData;
 
 	$: products = data.productPage.products;
+	$: title = data.title;
 </script>
 
-<h2>Products</h2>
+<h2>{title}</h2>
 
 {#if products && products.length > 0}
 	<ul>
