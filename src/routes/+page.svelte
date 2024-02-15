@@ -1,11 +1,33 @@
 <script lang="ts">
+	import { afterNavigate, beforeNavigate, goto } from '$app/navigation';
 	import { Button } from '$components';
+
+	beforeNavigate((navigation) => {
+		console.log('before navigate', navigation);
+
+		// navigation.cancel(); // canceling the navigation in certain conditions
+
+		// example canceling back/forward button
+		if (navigation.type === 'popstate') {
+			navigation.cancel();
+		}
+	});
+
+	afterNavigate((navigation) => {
+		console.log('after navigate', navigation);
+	});
 </script>
 
 <h1>Welcome to SvelteKit</h1>
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 
-<a href="/about">About</a>
+<button
+	on:click={() => {
+		goto('/about');
+	}}
+>
+	Go to About Page
+</button>
 
 <Button />
 
