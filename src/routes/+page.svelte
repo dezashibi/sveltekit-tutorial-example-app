@@ -32,6 +32,14 @@
 	Go to About Page
 </button>
 
+<button
+	on:click={() => {
+		goto('/file/a/b/c/d');
+	}}
+>
+	Go to File Page
+</button>
+
 <Button />
 
 <a href="/product/22333">Product</a>
