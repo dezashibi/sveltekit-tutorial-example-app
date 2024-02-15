@@ -29,7 +29,8 @@ declare global {
             productPage?: {
                 product: Product
             }
-            title?: string
+            title?: string,
+            description?: string,
             user?: {
                 id: number,
                 name: string,

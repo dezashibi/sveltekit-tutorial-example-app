@@ -1,8 +1,14 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
 
 	export let data: LayoutData;
 </script>
+
+<svelte:head>
+	<title>{$page.data.title || 'Shop'}</title>
+	<meta name="description" content={$page.data.description || 'trending shop page'} />
+</svelte:head>
 
 <div style:background="#f03" style:padding="10px">
 	<h3>

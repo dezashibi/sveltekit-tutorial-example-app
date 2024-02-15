@@ -1,4 +1,5 @@
-import { error, redirect } from '@sveltejs/kit';
+// import { error, redirect } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 // this will only run in the server
@@ -20,6 +21,7 @@ export const load: PageServerLoad = async ({ params }) => {
         productPage: {
             product
         },
-        title: `${product?.title} Information`
+        title: `${product?.title} Information`,
+        description: `best price for ${product.title}, ${product.description}`
     };
 }

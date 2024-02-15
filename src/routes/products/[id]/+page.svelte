@@ -12,6 +12,8 @@
 
 <p>{product?.description}</p>
 
+<a href="/products">Products Home</a>
+
 <style>
 	img {
 		width: 100%;

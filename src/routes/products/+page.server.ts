@@ -18,6 +18,7 @@ export const load: PageServerLoad = async ({ parent }) => {
             limit,
             total
         },
-        title: "Product List"
+        title: "Product List",
+        description: "Trending product page"
     };
 }
