@@ -13,9 +13,15 @@ const config = {
         // See https://kit.svelte.dev/docs/adapters for more information about adapters.
         adapter: adapter(),
 
-        // this wasn't here I've added to remember this is the way I can change the default routes folder
+        // this wasn't here I've added to remember this is the way I can change the default folder configs
         files: {
-            routes: 'src/routes'
+            routes: 'src/routes',
+            lib: 'src/lib',
+        },
+
+        // define custom aliases for folders
+        alias: {
+            $components: 'src/lib/components',
         }
     }
 };
