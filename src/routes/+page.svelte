@@ -34,10 +34,10 @@
 
 <button
 	on:click={() => {
-		goto('/file/a/b/c/d');
+		goto('/file/1234/a/b/c/d/edit');
 	}}
 >
-	Go to File Page
+	Go to File Edit Page
 </button>
 
 <Button />
