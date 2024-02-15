@@ -43,3 +43,7 @@
 <Button />
 
 <a href="/product/22333">Product</a>
+
+<br />
+
+<a href="/products">Products</a>
