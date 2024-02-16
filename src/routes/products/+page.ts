@@ -1,3 +1,5 @@
+import { env } from "$env/dynamic/public";
+// import { env as prvEnv } from "$env/dynamic/private"; // cannot be done
 import type { Load } from "@sveltejs/kit";
 
 
@@ -15,6 +17,9 @@ export const load: Load = async ({ data, url, route, params, parent, setHeaders,
     fetch('https://dummyjson.com/users');
 
     depends('app:products');
+
+    console.log(env.PUBLIC_TEST);
+    console.log(env.PUBLIC_KEY);
 
     setHeaders({
         age: '100',

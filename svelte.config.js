@@ -22,6 +22,11 @@ const config = {
         // define custom aliases for folders
         alias: {
             $components: 'src/lib/components',
+        },
+
+        // in case it needs to be changed, it's in here
+        env: {
+            publicPrefix: "PUBLIC_"
         }
     }
 };

@@ -44,8 +44,8 @@ export const handleFetch: HandleFetch = ({ request, event, fetch }) => {
 }
 
 export const handleError: HandleServerError = ({ error, event }) => {
-    console.log("handleError Hook: error", error);
-    console.log("handleError Hook: event", event);
+    console.log("HandleServerError Hook: error", error);
+    console.log("HandleServerError Hook: event", event);
 
     // we can send these to sentry or any error logging service.
 
