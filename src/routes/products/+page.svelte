@@ -1,12 +1,31 @@
 <script lang="ts">
-	import type { PageData } from './$types';
+	import { invalidate } from '$app/navigation';
 
-	export let data: PageData;
+	export let data: App.PageData;
 
-	$: products = data.productsPage.products;
+	$: console.log('page', data);
+
+	$: products = data.productsPage!.products;
 </script>
 
 <h2>{data.title}</h2>
+
+<button
+	on:click={() => {
+		// any endpoint's load function that has dependency on this url will be run
+		// invalidate('https://dummyjson.com/products');
+
+		// or we can use this custom identifer we have defined using depends function in load functions
+		invalidate('app:products');
+
+		// or
+		// invalidate((url) => {
+		// 	return url.hostname === 'dummyjson.com';
+		// });
+	}}
+>
+	Rerun load function
+</button>
 
 {#if products && products.length > 0}
 	<ul>

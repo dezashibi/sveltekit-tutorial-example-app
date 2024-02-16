@@ -1,4 +1,5 @@
-import { error, json, type NumericRange, type RequestHandler } from "@sveltejs/kit";
+import type { RequestHandler } from "./$types";
+import { error, json, type NumericRange } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async ({ fetch }) => {
     // const { products } = await (await import('$lib/dummy-products.json')).default;

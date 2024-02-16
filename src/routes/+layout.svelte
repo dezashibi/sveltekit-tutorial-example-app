@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/stores';
 	import type { LayoutData } from './$types';
 
@@ -12,9 +13,20 @@
 
 <div style:background="#f03" style:padding="10px">
 	<h3>
-		Root Layout
+		Root Layout |
+		<a href="/products">Products</a>
 		{#if data.user}
 			| Logged in as {data.user.name}
+			<button
+				on:click={async () => {
+					const response = await fetch('/api/logout', { method: 'POST' });
+					if (response.ok) {
+						invalidateAll();
+					}
+				}}>Logout</button
+			>
+		{:else}
+			| <a href="/login">Login</a>
 		{/if}
 	</h3>
 
