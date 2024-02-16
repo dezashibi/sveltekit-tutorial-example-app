@@ -15,10 +15,17 @@ interface Product {
     images: string[],
 }
 
+interface User {
+    id: number,
+    name: string,
+}
+
 declare global {
     namespace App {
         // interface Error {}
-        // interface Locals {}
+        interface Locals {
+            user?: User
+        }
         interface PageData {
             productsPage?: {
                 products?: Product[],
@@ -31,10 +38,7 @@ declare global {
             }
             title?: string,
             description?: string,
-            user?: {
-                id: number,
-                name: string,
-            }
+            user?: User
         }
         // interface PageState {}
         // interface Platform {}
