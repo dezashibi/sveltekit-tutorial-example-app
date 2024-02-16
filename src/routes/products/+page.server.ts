@@ -29,5 +29,7 @@ export const load: PageServerLoad = async ({ parent, url, route, params, fetch, 
         };
     }
 
-    throw error(response.status as NumericRange<400, 599>, response.statusText);
+    const errorJson = await response.json();
+
+    throw error(response.status as NumericRange<400, 599>, errorJson.message);
 };
