@@ -1,10 +1,11 @@
+import { API_URL } from "$env/static/private";
 import type { RequestHandler } from "./$types";
 import { error, json, type NumericRange } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async ({ fetch }) => {
     // const { products } = await (await import('$lib/dummy-products.json')).default;
 
-    const response = await fetch('https://dummyjson.com/products');
+    const response = await fetch(`${API_URL}/products`);
     const status = response.status as NumericRange<400, 599>;
 
     // some atuhorization, etc can happen here
