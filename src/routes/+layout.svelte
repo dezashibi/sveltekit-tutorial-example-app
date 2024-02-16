@@ -53,6 +53,12 @@
 			| <a href="/login">Login</a>
 		{/if}
 	</h3>
+	<hr />
+	<form method="GET" action="/search">
+		Search: <input type="text" name="q" />
+	</form>
+
+	<br />
 
 	<slot />
 
