@@ -1,40 +1,49 @@
 <script lang="ts">
-	import { goto, invalidateAll } from '$app/navigation';
+	import { applyAction, enhance } from '$app/forms';
+	import type { ActionData } from './$types';
 
-	let username = '';
-	let password = '';
+	export let form: ActionData;
 
-	const login = async () => {
-		const response = await fetch('/api/login', {
-			method: 'POST',
-			body: JSON.stringify({
-				username,
-				password
-			})
-		});
-
-		const resJson = await response.json();
-
-		if (response.ok) {
-			// goto('/products', {
-			// 	invalidateAll: true
-			// });
-			invalidateAll(); // because we already managed in the load function to redirect to that url
-		} else {
-			alert(resJson.message);
-		}
-	};
+	let isLoading = false;
 </script>
 
-<form on:submit|preventDefault={login}>
-	<input bind:value={username} id="username" name="username" placeholder="Username" /><br /><br />
+<form
+	method="POST"
+	action="?/login"
+	use:enhance={({ formElement, formData, action, cancel }) => {
+		isLoading = true;
+
+		console.log(formElement, formData, action, cancel);
+
+		return ({ result, update }) => {
+			if (result.type === 'redirect') {
+				applyAction(result);
+			} else if (result.type === 'error') {
+				// do something
+			} else {
+				isLoading = false;
+
+				update();
+			}
+		};
+	}}
+>
+	<input id="username" name="username" placeholder="Username" value={form?.username || ''} />
+	{#if form?.usernameMissing}
+		<p style="margin-bottom: 0;">Username is required</p>
+	{/if}
+	<br /><br />
 	<input
-		bind:value={password}
 		id="password"
 		name="password"
 		placeholder="Password"
 		type="password"
+		value={form?.password || ''}
 	/>
+	{#if form?.passwordMissing}
+		<p style="margin-bottom: 0;">Password is required</p>
+	{/if}
 	<br /><br />
-	<button type="submit">Login</button>
+
+	<button type="submit" disabled={isLoading}>Login</button>
 </form>
