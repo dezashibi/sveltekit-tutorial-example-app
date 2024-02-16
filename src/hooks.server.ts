@@ -1,4 +1,4 @@
-import type { Handle, HandleFetch } from "@sveltejs/kit";
+import type { Handle, HandleFetch, HandleServerError } from "@sveltejs/kit";
 import { sequence } from "@sveltejs/kit/hooks";
 
 // something like middleware
@@ -41,4 +41,15 @@ export const handleFetch: HandleFetch = ({ request, event, fetch }) => {
     }
 
     return fetch(request);
+}
+
+export const handleError: HandleServerError = ({ error, event }) => {
+    console.log("handleError Hook: error", error);
+    console.log("handleError Hook: event", event);
+
+    // we can send these to sentry or any error logging service.
+
+    return {
+        message: 'An unexpected error happened on our side, please be paitient we are working on it, thank you',
+    }
 }
