@@ -1,0 +1,1 @@
+export const libSecret = 'some value';

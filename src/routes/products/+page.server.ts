@@ -4,6 +4,8 @@ import { env } from '$env/dynamic/private';
 import { env as pubEnv } from '$env/dynamic/public';
 import { API_KEY, TEST } from '$env/static/private';
 import { PUBLIC_KEY, PUBLIC_TEST } from '$env/static/public';
+import { secret } from './secrets.server';
+import { libSecret } from '$lib/server/libSecret';
 
 // this will only run in the server
 // then we can keep secret things in the server
@@ -36,6 +38,9 @@ export const load: PageServerLoad = async ({ parent, url, route, params, fetch, 
     console.log("Static Private Env:", API_KEY);
     console.log("Static Public Env:", PUBLIC_KEY);
     console.log("Static Public Env:", PUBLIC_TEST);
+
+    console.log("some secret from secret.server.ts", secret);
+    console.log("some secret from libSecret", libSecret);
 
     if (response.ok) {
         return {
