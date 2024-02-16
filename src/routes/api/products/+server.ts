@@ -1,7 +1,10 @@
-import { error, json, type RequestHandler } from "@sveltejs/kit";
+import { error, json, type NumericRange, type RequestHandler } from "@sveltejs/kit";
 
-export const GET: RequestHandler = async () => {
-    const { products } = await (await import('$lib/dummy-products.json')).default;
+export const GET: RequestHandler = async ({ fetch }) => {
+    // const { products } = await (await import('$lib/dummy-products.json')).default;
+
+    const response = await fetch('https://dummyjson.com/products');
+    const status = response.status as NumericRange<400, 599>;
 
     // some atuhorization, etc can happen here
     // return new Response(JSON.stringify({ error: 'You are not authorized!' }), {
@@ -9,15 +12,19 @@ export const GET: RequestHandler = async () => {
     // });
 
     // or
-    // throw error(401, 'Not authorized');
+    //throw error(401, 'Not authorized');
 
-    return json(products, {
-        status: 200
-    });
+    if (response.ok) {
+        const products = await response.json();
+        return json(products, {
+            status
+        });
+        // return new Response(JSON.stringify(products), {
+        //     status: 200
+        // });
+    }
 
-    // return new Response(JSON.stringify(products), {
-    //     status: 200
-    // });
+    throw error(status, response.statusText);
 };
 
 export const POST: RequestHandler = async ({ request }) => {
