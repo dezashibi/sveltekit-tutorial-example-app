@@ -14,7 +14,7 @@
 <div style:background="#f03" style:padding="10px">
 	<h3>
 		Root Layout |
-		<a href="/products">Products</a>
+		<a href="/products" data-sveltekit-preload-data="hover">Products</a>
 		{#if data.user}
 			| Logged in as {data.user.name}
 			<button
